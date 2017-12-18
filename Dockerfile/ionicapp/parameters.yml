@@ -1,0 +1,65 @@
+# incluir aqui qualquer outro arquivo que desejar p/ ser processado antes
+imports:
+    - { resource: environments/parameters-mi.yml }
+
+parameters:
+    # preencher com uma string aleatória
+    secret: xcorp
+
+    # URL da raiz da aplicação
+    app_url: http://labdocker-app.xys.com.br
+
+    ### Banco de dados ###
+    database_driver_class: null
+    database_driver: pdo_pgsql
+    database_host: 10.136.44.82
+    database_port: 5432
+    database_dbname: dbmi_hmg
+    database_user: sysdbmi_hmg
+    database_password: abcd1234
+
+    ### Envio de e-mail ###
+    mailer.transport: smtp
+    mailer.host: smtp.mailgun.org
+    mailer.user: postmaster@xsocial.com.br
+    mailer.password: 3sjzvlqn3uz9
+    mailer.port: 25
+    mailer.encryption: 
+    mailer.sender: testemi@xys.com.br
+
+    ### Redis ###
+    # DSNs para os servidores
+    #redis.dsn.cache: ${redis.dsn.cache}
+    #redis.dsn.analytics: ${redis.dsn.analytics}
+
+    ### Servidor de chat e notificações ###
+    node_server: labmi-apoio.xys.com.br
+    node_notify_server: ${node.notify_server}
+    node_server_use_ssl: false
+    node_chat_port: 80
+    node_notify_port: 50181
+
+    ### Meetings ###
+    bbb_security_salt: 4b7c3bb4d4b73400160b0fae1640ea
+    bbb_server_scheme: http://
+    bbb_server_host: meeting-dev.xys.com.br
+    bbb_server_path: /bigbluebutton/
+    bbb_server_base_url: %bbb_server_scheme%%bbb_server_host%%bbb_server_path%
+    bbb_max_participants: 10
+
+    ### Ambiente ###
+    path_node: /usr/bin/node
+
+    ### Gearman ###
+    gearman_servers: localhost:4730
+
+    ### Sic ###
+    route_sic_v28 : http://externo.xys.com.br/xcorpv4sic/loginsic.php
+    url_wsdl_sic : http://externo.xys.com.br/xcorpv4sic/webservice/index.php?wsdl
+
+    ## Bundle Message ###
+    message_secret_key: %secret%
+
+    ### PushWoosh ###
+    pushwoosh.application_code: 
+    pushwoosh.api_access_token: 

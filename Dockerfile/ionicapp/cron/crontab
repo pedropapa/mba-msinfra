@@ -1,0 +1,11 @@
+*/1 * * * * cd /var/www/html && php app/console --env=dev swiftmailer:spool:send  > /dev/null 2>&1
+
+*/59 23 * * * cd /var/www/html && php app/console coreexternaluser:reminder:participation 3 > /dev/null 2>&1
+*/59 23 * * * cd /var/www/html && php app/console coreexternaluser:reminder:participation 2 > /dev/null 2>&1
+*/59 23 * * * cd /var/www/html && php app/console coreexternaluser:reminder:participation 1 > /dev/null 2>&1
+*/59 23 * * * cd /var/www/html && php app/console coreexternaluser:remove:participation > /dev/null 2>&1
+
+*/35 17 * * * cd /var/www/html && php app/console coreworkspacepoll:notifypoll:current  > /dev/null 2>&1
+
+*/10 * * * * cd /var/www/html && php app/console corenotification:email:resend > app/logs/corenotification-email-resend.log
+
