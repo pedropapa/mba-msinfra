@@ -33,6 +33,7 @@ fi
 
 #Instalando o projeto.
 cd /var/source
+/usr/local/bin/npm install oracle/node-oracledb#v2.0.15
 /usr/local/bin/npm install
 
 #Server start
