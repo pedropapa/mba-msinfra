@@ -15,6 +15,8 @@ ENV oracle_instantclient oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
 ENV oracle_instantclient_sdk oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm
 ENV oci_version oci8
 
+ADD rpms/ /tmp/
+
 #Create vim alias
 RUN echo "alias vi=vim" >> /root/.bashrc \
 
@@ -31,19 +33,31 @@ RUN echo "alias vi=vim" >> /root/.bashrc \
     && yum -y install --disablerepo=epel npm nodejs \
     && yum -y install gcc gcc-c++
 
+RUN yum install -y libaio.x86_64 glibc.x86_64
+RUN yum -y localinstall /tmp/oracle* --nogpgcheck
+RUN mkdir /usr/lib/oracle/12.2/client/network/admin -p
+COPY ./tnsnames.ora /usr/lib/oracle/12.2/client/network/admin/tnsnames.ora
+
+ENV ORACLE_HOME=/usr/lib/oracle/12.2/client64
+ENV PATH=$PATH:$ORACLE_HOME/bin
+ENV LD_LIBRARY_PATH=$ORACLE_HOME/lib
+ENV TNS_ADMIN=$ORACLE_HOME/network/admin
+
 #Instalando o gerenciador de versão do NodeJS
 RUN npm install n -g
 RUN npm install loopback -g
 
+RUN npm install -g process-nextick-args inherits delegates console-control-strings semver string-width isarray core-util-is util-deprecate
+
+#Instalando a versão correta do NPM
+RUN npm install npm@$npm_release -g
+
 #Instalando a versão correta do NodeJS
 RUN n $nodejs_release
 
-#Instalando a versão correta do NPM
-#RUN npm install npm@$npm_release -g
-
 #Web packages
-RUN npm config set unsafe-perm=true \
-    && npm install -g uglify-js phantomjs-prebuilt
+RUN npm config set unsafe-perm=true 
+	#&& npm install -g process-nextick-args
 
 #Oracle OCI 
 COPY rpms/${oracle_instantclient} /tmp

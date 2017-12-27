@@ -1,0 +1,21 @@
+MSEVENTOS=
+
+  (DESCRIPTION=
+
+    (ADDRESS=
+
+      (PROTOCOL=TCP)
+
+      (HOST=mseventos.mbamobi.com.br)
+
+      (PORT=1521)
+
+    )
+
+    (CONNECT_DATA=
+
+      (SERVER=dedicated)
+
+      (SID=XE)
+
+    )  )

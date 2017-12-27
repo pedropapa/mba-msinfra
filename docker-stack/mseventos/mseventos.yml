@@ -31,7 +31,7 @@ services:
       - proxy
 
   api:
-    image: mbamobi/loopbackapi:node9
+    image: mbamobi/loopbackapi:node7
     ports:
       - 3000:3000
     depends_on:

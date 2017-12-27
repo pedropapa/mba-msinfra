@@ -20,6 +20,8 @@ echo "Starting cron"
 /usr/sbin/crond
 echo
 
+/usr/local/bin/npm cache clean
+
 #Alterando a versão do NodeJS e NPM
 if [ -z $NODE_VERSION ]
 then
@@ -32,9 +34,10 @@ then
 fi
 
 #Instalando o projeto.
+echo "Instalando dependências..."
 cd /var/source
-/usr/local/bin/npm install oracle/node-oracledb#v2.0.15
-/usr/local/bin/npm install
+/usr/local/bin/npm install oracle/node-oracledb.git#v2.0.15 --no-bin-links
+/usr/local/bin/npm install --no-bin-links
 
 #Server start
 echo "Iniciando api"
