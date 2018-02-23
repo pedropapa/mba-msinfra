@@ -2,13 +2,15 @@ version: "3"
 
 services:
   app_gestor:
-    image: mbamobi/ionicapp:node9
+    image: mbamobi/ionicapp:node7
     depends_on:
       - api
     environment:
       SERVER_NAME: gestor.mseventos.mbamobi.com.br
       DEMO_MODE: 'no'
       GIT_TOKEN: 08c170bcb71588809a4d3440bd5644bcc59d9897
+      NODE_VERSION: 7.8.0
+      NPM_VERSION: 5.3.0
     volumes:
       - /data/ms_eventos_gestor:/var/source
       - /data/ms_eventos_gestor/api/config/supervisord.d:/etc/supervisord.d
@@ -38,16 +40,15 @@ services:
       - oracledb
     environment:
       SERVER_NAME: api.mseventos.mbamobi.com.br
-      DEMO_MODE: 'no'
       GIT_TOKEN: 08c170bcb71588809a4d3440bd5644bcc59d9897
       NODE_VERSION: 7.8.0
       NPM_VERSION: 5.5.1
-    volumes:  
+    volumes:
       - /data/ms_eventos_gestor/api:/var/source
       - /data/ms_eventos_gestor/api/config/supervisord.d:/etc/supervisord.d
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       labels:
         - "traefik.port=3000"
         - "traefik.backend=api"

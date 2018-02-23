@@ -19,7 +19,7 @@ ENV npm_release=$NPM_VERSION
 RUN echo "alias vi=vim" >> /root/.bashrc \
 
 #Basic packages
-    && yum install -y deltarpm epel-release vim-enhanced net-tools bind-utils wget curl file cronie crontabs gcc make openssh openssh-clients bzip2 \
+    && yum install -y git deltarpm epel-release vim-enhanced net-tools bind-utils wget curl file cronie crontabs gcc make openssh openssh-clients bzip2 \
     && yum -y update \
     && echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config \
 
@@ -44,7 +44,7 @@ RUN n $nodejs_release
 #Web packages
 RUN yum -y install nginx \
     && npm config set unsafe-perm=true \
-    && npm install -g uglify-js phantomjs-prebuilt \
+    && npm install -g uglify-js \
     && npm install -g @angular/cli
 
 #Oracle OCI 
