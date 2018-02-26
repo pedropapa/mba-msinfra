@@ -30,7 +30,7 @@ RUN echo "alias vi=vim" >> /root/.bashrc \
     && yum -y install --disablerepo=epel npm nodejs --skip-broken
 
 #Web and PHP packages
-RUN yum -y install pear1u ${php_release}-dev nginx ${php_release} ${php_release}-gd ${php_release}-ldap ${php_release}-curl ${php_release}-openssl ${php_release}-pcre ${php_release}-xml ${php_release}-cli ${php_release}-xml ${php_release}-devel ${php_release}-geoip ${php_release}-bcmath ${php_release}-pear ${php_release}-pdo ${php_release}-pdo-dblib ${php_release}-intl ${php_release}-pecl-zendopcache ${php_release}-mbstring ${php_release}-mcrypt ${php_release}-fpm ${php_release}-pgsql ${php_release}-mysqlnd ${php_release}-mssql ${php_release}-pecl-imagick ${php_release}-opcache ${php_release}-mcrypt ${php_release}-gearman ${php_release}-pecl-igbinary ${php_release}-pecl-redis ${php_release}-pecl-zip git ${php_release}-soap
+RUN yum -y install pear1u ${php_release}-json ${php_release}-dev nginx ${php_release} ${php_release}-gd ${php_release}-ldap ${php_release}-curl ${php_release}-openssl ${php_release}-pcre ${php_release}-xml ${php_release}-cli ${php_release}-xml ${php_release}-devel ${php_release}-geoip ${php_release}-bcmath ${php_release}-pear ${php_release}-pdo ${php_release}-pdo-dblib ${php_release}-intl ${php_release}-pecl-zendopcache ${php_release}-mbstring ${php_release}-mcrypt ${php_release}-fpm ${php_release}-pgsql ${php_release}-mysqlnd ${php_release}-mssql ${php_release}-pecl-imagick ${php_release}-opcache ${php_release}-mcrypt ${php_release}-gearman ${php_release}-pecl-igbinary ${php_release}-pecl-redis ${php_release}-pecl-zip git ${php_release}-soap
 
 #Change opcache parameters
 RUN sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=60/g' /etc/php.d/*opcache.ini \
@@ -74,6 +74,13 @@ RUN cd /tmp \
     && make \
     && make install \
     && echo 'extension="gearman.so"' > /etc/php.d/30-gearman.ini
+
+# Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
 
 #Copy nginx custom config
 COPY configs/nginx/nginx.conf /etc/nginx/nginx.conf

@@ -21,6 +21,26 @@ services:
       - internal
       - proxy
 
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mbamobi
+    ports:
+      - 3306:3306
+    volumes:
+      - /data/mysql:/var/lib/mysql
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+         - node.hostname == ms-docker-leader
+    networks:
+      - internal
+      - proxy
+
 networks:
   internal:
   proxy:

@@ -50,6 +50,9 @@ else
 	echo "}" >> /root/.composer/auth.json
 fi
 
+cd /var/www/html
+composer install
+
 
 #cron
 echo "Starting cron"
