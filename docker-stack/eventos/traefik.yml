@@ -27,7 +27,7 @@ services:
         condition: on-failure
       placement:
         constraints:
-         - node.hostname == MSEventosDocker
+         - node.hostname == ms-docker-leader
     networks:
        - proxy
 

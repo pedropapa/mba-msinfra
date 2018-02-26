@@ -47,30 +47,9 @@ else
 	echo "}" >> /root/.composer/auth.json
 fi
 
-
-#cron
-echo "Starting cron"
-/usr/sbin/crond
-echo
-
-#supervisor (workers gearman)
-echo "Starting supervisor"
-/usr/bin/supervisord -c /etc/supervisord.conf
-echo
-
-#dynatrace
-if [ -z $DYNATRACE_VERSION ]
+if [ -z $NPM_VERSION ]
 then
-	echo "DYNATRACE_VERSION variable is necessary (ex: 6.5)"
-	echo
-
-elif [ -f /etc/init.d/dynaTraceWebServerAgent ]
-then
-	echo "Starting Dynatrace agent"
-	echo
-	/etc/init.d/dynaTraceWebServerAgent start
-	export LD_PRELOAD=/opt/dynatrace-$DYNATRACE_VERSION/agent/lib64/libdtagent.so
-	echo "extension=/opt/dynatrace-$DYNATRACE_VERSION/agent/lib64/libdtagent.so" > /etc/php.d/dynatrace.ini
+	/usr/local/bin/npm install npm@$NPM_VERSION -g
 fi
 
 #Alterando a versão do NodeJS e NPM
@@ -79,17 +58,13 @@ then
 	cd /var/source n $NODE_VERSION
 fi
 
-if [ -z $NPM_VERSION ]
-then
-	/usr/local/bin/npm install npm@$NPM_VERSION -g
-fi
-
 #Instalando o projeto.
 cd /var/source
+/bin/rm -rf node_modules
 /usr/local/bin/npm install
-/usr/local/bin/ionic build --prod
+/usr/local/bin/ionic build --dev
 
 #nginx start
 echo "Stating nginx"
-/usr/bin/rm -f /run/nginx.pid
+/bin/rm -f /run/nginx.pid
 /usr/sbin/nginx -g 'daemon off;'
