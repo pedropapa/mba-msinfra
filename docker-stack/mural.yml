@@ -17,7 +17,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=80"
-        - "traefik.backend=app_gestor"
+        - "traefik.backend=mural-dashboard"
         - "traefik.frontend.rule=Host:mural.ms.mbamobi.com.br"
         - "traefik.frontend.passHostHeader=true"
         - "traefik.docker.network=proxy"
@@ -33,6 +33,8 @@ services:
     environment:
       SERVER_NAME: mural-api.ms.mbamobi.com.br
       DEMO_MODE: 'no'
+      DYNATRACE_VERSION: 6.5
+      GIT_TOKEN: 74cba26323f6d14ad376dc9108805be58d46fc6d
     depends_on:
       - postgres
     volumes:
@@ -42,7 +44,7 @@ services:
       replicas: 2
       labels:
         - "traefik.port=80"
-        - "traefik.backend=api"
+        - "traefik.backend=mural-api"
         - "traefik.frontend.rule=Host:mural-api.ms.mbamobi.com.br"
         - "traefik.frontend.passHostHeader=true"
         - "traefik.docker.network=proxy"
