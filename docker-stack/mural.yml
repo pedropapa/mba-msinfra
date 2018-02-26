@@ -29,14 +29,14 @@ services:
       - proxy
 
   api:
-    image: mbamobi/php:71
+    image: mbamobi/lumenapp:php71
     environment:
       SERVER_NAME: mural-api.ms.mbamobi.com.br
       DEMO_MODE: 'no'
       DYNATRACE_VERSION: 6.5
       GIT_TOKEN: 74cba26323f6d14ad376dc9108805be58d46fc6d
     depends_on:
-      - postgres
+      - oracle
     volumes:
       - /data/mba_mm_core:/var/www/html
     deploy:
