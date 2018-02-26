@@ -1,0 +1,4 @@
+/etc/supervisor.d
+/var/spool/cron/root
+/var/www/html
+

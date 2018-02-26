@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  dashboard:
+    image: mbamobi/ionicapp:node7
+    depends_on:
+      - api
+    environment:
+      SERVER_NAME: mural.ms.mbamobi.com.br
+      DEMO_MODE: 'no'
+      NODE_VERSION: 7.8.0
+      NPM_VERSION: 5.3.0
+    volumes:
+      - /data/mba_mm_dashboard_mobile:/var/source
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.port=80"
+        - "traefik.backend=app_gestor"
+        - "traefik.frontend.rule=Host:mural.ms.mbamobi.com.br"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.enable=true"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+  api:
+    image: mbamobi/php:71
+    environment:
+      SERVER_NAME: mural-api.ms.mbamobi.com.br
+      DEMO_MODE: 'no'
+    depends_on:
+      - postgres
+    volumes:
+      - /data/mba_mm_core:/var/www/html
+    deploy:
+      mode: replicated
+      replicas: 2
+      labels:
+        - "traefik.port=80"
+        - "traefik.backend=api"
+        - "traefik.frontend.rule=Host:mural-api.ms.mbamobi.com.br"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.enable=true"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true

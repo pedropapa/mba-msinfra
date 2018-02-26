@@ -10,11 +10,19 @@ Hospeda todas os serviços necessários para a execução dos aplicativos desenv
 	- Manager com Traefik para balanceamento de carga / servidor de proxy.
 	- Worker para isolar serviços que exigem mais recursos. 
 
+# Eventos
+
+- API: https://api.mseventos.mbamobi.com.br/
+
 # Eventos - Gestor
 
-Repositório: https://github.com/mbamobi/ms_eventos_gestor
-API: https://api.mseventos.mbamobi.com.br/
-Versão WEB: https://gestor.mseventos.mbamobi.com.br/
+- Repositório: https://github.com/mbamobi/ms_eventos_gestor
+- Versão WEB: https://gestor.mseventos.mbamobi.com.br/
+
+# Eventos - Participante
+
+- Repositório: https://github.com/mbamobi/ms_eventos_participante
+- Versão WEB: https://participante.mseventos.mbamobi.com.br/
 
 # Contribuindo
 

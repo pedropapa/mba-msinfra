@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  jenkins:
+    image: jenkins:alpine
+    ports:
+      - 8081:8081
+      - 50000:50000
+    depends_on:
+      - api
+    environment:
+      JENKINS_PORT: 8081
+      JENKINS_OPTS: --httpPort=8081
+    volumes:
+      - /data/jenkins:/var/jenkins_home
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.port=8081"
+        - "traefik.backend=jenkins"
+        - "traefik.frontend.rule=Host:ci.mseventos.mbamobi.com.br"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.enable=true"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true

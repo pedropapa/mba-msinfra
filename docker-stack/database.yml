@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  oracle:
+    image: sath89/oracle-xe-11g
+    environment:
+      DEFAULT_SYS_PASS: mbamobi
+    ports:
+      - 1521:1521
+    volumes:
+      - /data/oracle:/u01/app/oracle
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true
