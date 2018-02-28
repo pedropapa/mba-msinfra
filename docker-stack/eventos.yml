@@ -6,7 +6,7 @@ services:
     depends_on:
       - api
     environment:
-      SERVER_NAME: gestor.mseventos.mbamobi.com.br
+      SERVER_NAME: eventos-gestor.ms.mbamobi.com.br
       DEMO_MODE: 'no'
       GIT_TOKEN: 08c170bcb71588809a4d3440bd5644bcc59d9897
       NODE_VERSION: 7.8.0
@@ -22,7 +22,7 @@ services:
       labels:
         - "traefik.port=80"
         - "traefik.backend=app_gestor"
-        - "traefik.frontend.rule=Host:gestor.mseventos.mbamobi.com.br"
+        - "traefik.frontend.rule=Host:eventos-gestor.ms.mbamobi.com.br"
         - "traefik.frontend.passHostHeader=true"
         - "traefik.docker.network=proxy"
         - "traefik.enable=true"
@@ -37,7 +37,7 @@ services:
     depends_on:
       - api
     environment:
-      SERVER_NAME: participante.mseventos.mbamobi.com.br
+      SERVER_NAME: eventos-participante.ms.mbamobi.com.br
       DEMO_MODE: 'no'
       GIT_TOKEN: e8b866f4bd2cdec875602a4c0fd4e3080b0eba6c
       NODE_VERSION: 7.8.0
@@ -52,7 +52,7 @@ services:
       labels:
         - "traefik.port=80"
         - "traefik.backend=app_participante"
-        - "traefik.frontend.rule=Host:participante.mseventos.mbamobi.com.br"
+        - "traefik.frontend.rule=Host:eventos-participante.ms.mbamobi.com.br"
         - "traefik.frontend.passHostHeader=true"
         - "traefik.docker.network=proxy"
         - "traefik.enable=true"
@@ -69,7 +69,7 @@ services:
     depends_on:
       - oracledb
     environment:
-      SERVER_NAME: api.mseventos.mbamobi.com.br
+      SERVER_NAME: eventos-api.ms.mbamobi.com.br
       GIT_TOKEN: 08c170bcb71588809a4d3440bd5644bcc59d9897
       NODE_VERSION: 7.8.0
       NPM_VERSION: 5.5.1
@@ -82,7 +82,7 @@ services:
       labels:
         - "traefik.port=3000"
         - "traefik.backend=api"
-        - "traefik.frontend.rule=Host:api.mseventos.mbamobi.com.br"
+        - "traefik.frontend.rule=Host:eventos-api.ms.mbamobi.com.br"
         - "traefik.frontend.passHostHeader=true"
         - "traefik.docker.network=proxy"
         - "traefik.enable=true"

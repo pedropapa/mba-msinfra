@@ -61,6 +61,7 @@ fi
 #Instalando o projeto.
 cd /var/source
 /bin/rm -rf node_modules
+/usr/local/bin/npm cache clear -f
 /usr/local/bin/npm install
 /usr/local/bin/ionic build --dev
 

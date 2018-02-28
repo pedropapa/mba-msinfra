@@ -17,7 +17,7 @@ services:
       replicas: 1
       labels:
         - "traefik.port=8080"
-        - "traefik.frontend.rule=Host:lb.mseventos.mbamobi.com.br"
+        - "traefik.frontend.rule=Host:lb.ms.mbamobi.com.br"
         - "traefik.docker.network=proxy"
         - "traefik.enable=true"
       update_config:
