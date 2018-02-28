@@ -13,24 +13,24 @@ Hospeda todas os serviços necessários para a execução dos aplicativos desenv
 - Sonar para avaliar qualidade do código (TODO).
 
 # Gerenciamento
-- Jenkins: https://ci.ms.mbamobi.com.br
-- Traefik dashboard: https://lb.ms.mbamobi.com.br
+- Jenkins: http://ci.ms.mbamobi.com.br
+- Traefik dashboard: http://lb.ms.mbamobi.com.br
 
 # Serviços
 - Referente aos aplicativos desenvolvidos para o Ministério da Saúde.
     # Mural de notificações
-    - Dashboard: https://mural.ms.mbamobi.com.br
-    - API: https://mural-api.ms.mbamobi.com.br
+    - Dashboard: http://mural.ms.mbamobi.com.br
+    - API: http://mural-api.ms.mbamobi.com.br
     
     # Eventos
     - API: https://eventos-api.ms.mbamobi.com.br
         ## Gestor
         - Repositório: https://github.com/mbamobi/ms_eventos_gestor
-        - Versão WEB: https://eventos-gestor.ms.mbamobi.com.br
+        - Versão WEB: http://eventos-gestor.ms.mbamobi.com.br
     
         ## Participante
         - Repositório: https://github.com/mbamobi/ms_eventos_participante
-        - Versão WEB: https://eventos-participante.ms.mbamobi.com.br
+        - Versão WEB: http://eventos-participante.ms.mbamobi.com.br
     
     # Parse Server
     - _TODO_
