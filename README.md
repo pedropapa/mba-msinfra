@@ -22,6 +22,11 @@ Hospeda todas os serviços necessários para a execução dos aplicativos desenv
     - Dashboard: http://mural.ms.mbamobi.com.br
     - API: http://mural-api.ms.mbamobi.com.br
     
+    # Gerenciador de Apps (Substituirá o Mural)
+    - Repositório: https://github.com/pedropapa/mba_gerenciador_app
+    - Dashboard: http://mba.gerenciador-app.pedropapadopolis.com
+    - API: @TODO
+    
     # Eventos
     - API: https://eventos-api.ms.mbamobi.com.br
         ## Gestor

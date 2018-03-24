@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  dashboard:
+    image: mbamobi/ionicapp:node7
+    depends_on:
+      - api
+    environment:
+      SERVER_NAME: mba.gerenciador-app.pedropapadopolis.com
+      DEMO_MODE: 'no'
+      NODE_VERSION: 7.8.0
+      NPM_VERSION: 5.3.0
+    volumes:
+      - /data/mba_gerenciador_app:/var/source
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.port=80"
+        - "traefik.backend=mural-dashboard"
+        - "traefik.frontend.rule=Host:mba.gerenciador-app.pedropapadopolis.com"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.enable=true"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true
+    
