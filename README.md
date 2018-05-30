@@ -24,7 +24,7 @@ Hospeda todas os serviços necessários para a execução dos aplicativos desenv
     
     # Gerenciador de Apps (Substituirá o Mural)
     - Repositório: https://github.com/pedropapa/mba_gerenciador_app
-    - Dashboard: http://mba.gerenciador-app.pedropapadopolis.com
+    - Dashboard: http://gerenciadorapp.ms.mbamobi.com.br/
     - API: @TODO
     
     # Eventos
