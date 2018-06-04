@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  reconhecimentofacial:
+    image: mbamobi/reconhecimentofacial:3.6.5-flask
+    volumes:
+      - /data/reconhecimentofacial:/var/source
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.port=80"
+        - "traefik.backend=reconhecimentofacial"
+        - "traefik.frontend.rule=Host:reconhecimentofacial.ms.mbamobi.com.br"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.enable=true"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true
