@@ -5,6 +5,11 @@ services:
     image: mbamobi/reconhecimentofacial:3.6.5-flask
     volumes:
       - /data/reconhecimentofacial:/var/source
+    ports:
+      - 5001:5001
+      - 5002:5002
+      - 5003:5003
+      - 5004:5004
     deploy:
       mode: replicated
       replicas: 1
