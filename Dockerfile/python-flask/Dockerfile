@@ -12,6 +12,7 @@ RUN apt-get update
 RUN pip install Flask -q \
     && pip install opencv-python -q \
     && pip install opencv-contrib-python -q \
+    && pip install -U flask-cors -q \
     && apt-get install cmake -y \
     && apt-get install -y build-essential \
     && pip install face_recognition -q \
